@@ -1,6 +1,7 @@
 import os
 
 def scanfile(path):
+	"""扫描路径下的包括子文件夹下所有的文件"""
 	#存文件名
 	filenames = []
 	#存路径
@@ -23,6 +24,18 @@ def scanfile(path):
 		filenames.extend(fns)
 		filepaths.extend(fps)
 	return filenames, filepaths
+	
+	
+def fileswithin(path):
+	"""扫描路径下的文件，不包括子文件夹的文件"""
+	filenames = []
+	for x in os.listdir(path):
+		abs_path_dir = os.path.join(path, x)
+		# 如果是文件，存名字
+		if not os.path.isdir(abs_path_dir):
+			filenames.append(x)
+	return filenames
+	
 	
 def main():
 	path = input("输入绝对路径：")
